@@ -39,6 +39,23 @@ class StringCalculatorTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($return, "2");
     }
 
+    public function testFloatingPoints()
+    {
+        $stringCalculator = new StringCalculator();
+
+        $return = $stringCalculator->add("1.1,1");
+
+        $this->assertEquals($return, "2.1");
+    }
+
+    public function testNewLineSeparator()
+    {
+        $stringCalculator = new StringCalculator();
+
+        $return = $stringCalculator->add("1\n2,3");
+
+        $this->assertEquals($return, "6");
+    }
 
 
 }

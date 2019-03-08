@@ -7,7 +7,6 @@ class StringCalculator
     public function add(string $number): string
     {
         $values = explode(",", $number);
-        var_dump($values);
-        return "";
+        return (string) array_sum($values);
     }
 }
