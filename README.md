@@ -22,3 +22,7 @@ More information on: http://codingdojo.org
 ./vendor/bin/psalm   #static analysis
 ```
 
+## Sessions:
+
+### #1 - String Calculator
+http://codingdojo.org/kata/StringCalculator/
