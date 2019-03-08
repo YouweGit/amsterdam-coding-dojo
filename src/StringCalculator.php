@@ -6,6 +6,7 @@ class StringCalculator
 {
     public function add(string $number): string
     {
-        return "";
+        // $values = explode(",")
+        return "0";
     }
 }

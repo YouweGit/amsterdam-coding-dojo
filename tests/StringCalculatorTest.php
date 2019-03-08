@@ -29,4 +29,15 @@ class StringCalculatorTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals($return, "0");
     }
+
+    public function testSumOfTwoStrings()
+    {
+        $stringCalculator = new StringCalculator();
+
+        $return = $stringCalculator->add("1,1");
+
+        $this->assertEquals($return, "2");
+    }
+
+
 }
