@@ -5,56 +5,61 @@ use App\StringCalculator;
 
 class StringCalculatorTest extends \PHPUnit\Framework\TestCase
 {
+    private $stringCalculator;
+
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->stringCalculator = new StringCalculator();
+    }
+
     public function testStringCalculatorExists()
     {
         $this->assertInstanceOf(
             StringCalculator::class,
-            new StringCalculator()
+            $this->stringCalculator
         );
     }
     public function testAddReturnTypeString()
     {
-        $stringCalculator = new StringCalculator();
-
-        $return = $stringCalculator->add("123");
+        $return = $this->stringCalculator->add("123");
 
         $this->assertTrue(is_string($return));
     }
 
     public function testEmptyString()
     {
-        $stringCalculator = new StringCalculator();
-
-        $return = $stringCalculator->add("");
+        $return = $this->stringCalculator->add("");
 
         $this->assertEquals($return, "0");
     }
 
     public function testSumOfTwoStrings()
     {
-        $stringCalculator = new StringCalculator();
-
-        $return = $stringCalculator->add("1,1");
+        $return = $this->stringCalculator->add("1,1");
 
         $this->assertEquals($return, "2");
     }
 
     public function testFloatingPoints()
     {
-        $stringCalculator = new StringCalculator();
-
-        $return = $stringCalculator->add("1.1,1");
+        $return = $this->stringCalculator->add("1.1,1");
 
         $this->assertEquals($return, "2.1");
     }
 
     public function testNewLineSeparator()
     {
-        $stringCalculator = new StringCalculator();
-
-        $return = $stringCalculator->add("1\n2,3");
+        $return = $this->stringCalculator->add("1\n2,3");
 
         $this->assertEquals($return, "6");
+    }
+
+    public function testThatCombinedCommaAndNewlineReturnsErrorMessage()
+    {
+        $numbers = "175.2,\n35";
+        $return = $this->stringCalculator->add($numbers);
+        $this->assertEquals("Number expected but '\n' found at position 6.", $return);
     }
 
 
