@@ -7,10 +7,21 @@
  */
 
 namespace App\Test;
+use App\StringCalculator;
 
-use StringCalculator;
-
-class StringCalculatorTest extends \PHPUnit_Framework_TestCase
+class StringCalculatorTest extends \PHPUnit\Framework\TestCase
 {
-
+    public function testStringCalculatorExists()
+    {
+        $this->assertInstanceOf(
+            StringCalculator::class,
+            new StringCalculator()
+        );
+    }
+    public function testAddRetrunTypeString(){
+        $obj = new StringCalculator();
+        $this->assertIsString(
+            $obj->add('testing')
+        );
+    }
 }
