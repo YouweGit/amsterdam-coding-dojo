@@ -1,10 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: paulo.bettini
- * Date: 2019-03-08
- * Time: 16:15
- */
+<?php declare (strict_types = 1);
 
 namespace App\Test;
 use App\StringCalculator;
@@ -18,10 +12,21 @@ class StringCalculatorTest extends \PHPUnit\Framework\TestCase
             new StringCalculator()
         );
     }
-    public function testAddRetrunTypeString(){
-        $obj = new StringCalculator();
-        $this->assertIsString(
-            $obj->add('testing')
-        );
+    public function testAddReturnTypeString()
+    {
+        $stringCalculator = new StringCalculator();
+
+        $return = $stringCalculator->add("123");
+
+        $this->assertTrue(is_string($return));
+    }
+
+    public function testEmptyString()
+    {
+        $stringCalculator = new StringCalculator();
+
+        $return = $stringCalculator->add("");
+
+        $this->assertEquals($return, "0");
     }
 }
