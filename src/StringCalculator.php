@@ -15,7 +15,16 @@ class StringCalculator
             $position++;
             return "Number expected but '\n' found at position $position.";
         }
+
+        $positionNewSeparator = strpos($number, "//");
+        if ($positionNewSeparator !== false) {
+            $newSeparator = substr($number, $positionNewSeparator+2, 1);
+            $number = str_replace($newSeparator, ",", $number);
+        }
+
         $number = str_replace("\n", ",", $number);
+        $number = str_replace('\n', ",", $number);
+
         $values = explode(",", $number);
         return (string)array_sum($values);
     }

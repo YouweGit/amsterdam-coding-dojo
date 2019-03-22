@@ -86,4 +86,12 @@ class StringCalculatorTest extends \PHPUnit\Framework\TestCase
         $return = $this->stringCalculator->add($numbers);
         $this->assertEquals($expected, $return);
     }
+
+    public function testWithNegativeNumbers()
+    {
+        $numbers = "-1,2";
+        $expected = "Negative not allowed : -1";
+        $return = $this->stringCalculator->add($numbers);
+        $this->assertEquals($expected, $return);
+    }
 }
