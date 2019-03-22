@@ -62,5 +62,14 @@ class StringCalculatorTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("Number expected but '\n' found at position 6.", $return);
     }
 
+    public function testThatPositionOfInvalidCharacterCombinationIsReturnedInErrorMessage()
+    {
+        $numbers = "175.2,351,75.2,\n35";
+        $position = strpos($numbers, ",\n");
+        $expected = "Number expected but '\n' found at position " . $position . ".";
+        $return = $this->stringCalculator->add($numbers);
+        $this->assertEquals($expected, $return);
+    }
+
 
 }
