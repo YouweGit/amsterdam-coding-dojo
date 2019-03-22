@@ -26,3 +26,17 @@ More information on: http://codingdojo.org
 
 ### #1 - String Calculator
 http://codingdojo.org/kata/StringCalculator/
+
+#### Second session:
+
+Nice things:
+
+* Medisoft joined;
+* Get into a more complex problem (part of the problem);
+
+Need to improved:
+
+* Feedback should be given in the right time / right manner;
+* More time;
+* Bring something like cloud9;
+

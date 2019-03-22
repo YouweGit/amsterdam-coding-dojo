@@ -24,6 +24,14 @@
         {
             "name": "semra hakan",
             "email": "semra.hakan@city.ac.uk"
+        },
+        {
+            "name": "Matheus Gomes",
+            "email": "eu@matheusgomes.com.br"
+        },
+        {
+            "name": "Farid Movsumov",
+            "email": "faridmovsumov@gmail.com"
         }
     ],
     "require": {
