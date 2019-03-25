@@ -18,7 +18,7 @@ class StringCalculator
     private function getValuesFromString(string $number): array
     {
         return explode(
-            ",",
+            ',',
             $this->replaceSeparators($number)
         );
     }
@@ -26,7 +26,7 @@ class StringCalculator
     {
         return str_replace(
             $this->getSeparator($number),
-            ",",
+            ',',
             $number
         );
     }
@@ -46,25 +46,26 @@ class StringCalculator
     }
     private function checkErrors(string $number): string
     {
-        if (!$this->isLastCharValid($number)) {
-            return 'Number expected but EOF found.';
-        }
-        $position = $this->getInvalidSeparatorPosition($number);
-        if ($position !== 0) {
-            return "Number expected but '\n' found at position $position.";
+        try{
+            $this->isLastCharValid($number);
+            $this->hasInvalidSeparatorPosition($number);
+        }catch (\RuntimeException $e) {
+            return $e->getMessage();
         }
         return '';
     }
-    private function isLastCharValid(string $number) : bool
+    private function isLastCharValid(string $number) : void
     {
-        return substr($number, -1) !== ',';
+        if (substr($number, -1) === ',') {
+            throw  new \RuntimeException('Number expected but EOF found.');
+        }
     }
-    private function getInvalidSeparatorPosition(string $number): int
+    private function hasInvalidSeparatorPosition(string $number): void
     {
         $position = strpos($number, ",\n");
         if (false !== $position) {
-            return ++$position;
+            $position++;
+            throw new \RuntimeException("Number expected but '\n' found at position $position.");
         }
-        return 0;
     }
 }
