@@ -32,7 +32,11 @@
         {
             "name": "Farid Movsumov",
             "email": "faridmovsumov@gmail.com"
-        }
+        },
+        {
+            "name": "Tanaydin Sirin",
+            "email": "huzursuz@gmail.com"
+        },
     ],
     "require": {
         "squizlabs/php_codesniffer": "*",
