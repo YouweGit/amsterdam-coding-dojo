@@ -110,4 +110,12 @@ class StringCalculatorTest extends \PHPUnit\Framework\TestCase
         $return = $this->stringCalculator->add($numbers);
         $this->assertEquals($expected, $return);
     }
+
+    public function testWithMultipleErrors(): void
+    {
+        $numbers = '-1,,2';
+        $expected = 'Negative not allowed : -1\nNumber expected but \',\' found at position 3.';
+        $return = $this->stringCalculator->add($numbers);
+        $this->assertEquals($expected, $return);
+    }
 }

@@ -73,12 +73,13 @@ class StringCalculator
 
     private function checkForNegativeNumber(string $number): void
     {
-        $explodedStrings = $this->getValuesFromString($number);
-
-        foreach ($explodedStrings as $explodedString) {
-            if ($explodedString < 0) {
-                throw new \RuntimeException('Negative not allowed : ' . $explodedString);
+        foreach ($this->getValuesFromString($number) as $explodedString) {
+            if ((int)$explodedString < 0) {
+                $negativeNumbers[] = $explodedString;
             }
+        }
+        if (isset($negativeNumbers)) {
+            throw new \RuntimeException('Negative not allowed : ' . implode(',', $negativeNumbers));
         }
     }
 }
