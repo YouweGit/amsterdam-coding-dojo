@@ -26,12 +26,12 @@ class StringCalculator
     private function replaceSeparators(string $number): string
     {
         return str_replace(
-            $this->getSeparator($number),
+            $this->getSeparators($number),
             ',',
             $number
         );
     }
-    private function getSeparator(string $number): array
+    private function getSeparators(string $number): array
     {
         $separators = ['\n', "\n"];
         $beginNewSeparator = strpos($number, "//");
@@ -70,9 +70,11 @@ class StringCalculator
             throw new \RuntimeException("Number expected but '\n' found at position $position.");
         }
     }
+
     private function checkForNegativeNumber(string $number): void
     {
-        $explodedStrings = explode(',', $number);
+        $explodedStrings = $this->getValuesFromString($number);
+
         foreach ($explodedStrings as $explodedString) {
             if ($explodedString < 0) {
                 throw new \RuntimeException('Negative not allowed : ' . $explodedString);
