@@ -2,6 +2,7 @@
 
 namespace App;
 
+
 class StringCalculator
 {
     public function add(string $number): string
@@ -47,25 +48,35 @@ class StringCalculator
     private function checkErrors(string $number): string
     {
         try{
-            $this->isLastCharValid($number);
-            $this->hasInvalidSeparatorPosition($number);
+            $this->checkIfLastCharIsValid($number);
+            $this->checkForInvalidSeparatorPosition($number);
+            $this->checkForNegativeNumber($number);
         }catch (\RuntimeException $e) {
             return $e->getMessage();
         }
         return '';
     }
-    private function isLastCharValid(string $number) : void
+    private function checkIfLastCharIsValid(string $number) : void
     {
         if (substr($number, -1) === ',') {
             throw  new \RuntimeException('Number expected but EOF found.');
         }
     }
-    private function hasInvalidSeparatorPosition(string $number): void
+    private function checkForInvalidSeparatorPosition(string $number): void
     {
         $position = strpos($number, ",\n");
         if (false !== $position) {
             $position++;
             throw new \RuntimeException("Number expected but '\n' found at position $position.");
+        }
+    }
+    private function checkForNegativeNumber(string $number): void
+    {
+        $explodedStrings = explode(',', $number);
+        foreach ($explodedStrings as $explodedString) {
+            if ($explodedString < 0) {
+                throw new \RuntimeException('Negative not allowed : ' . $explodedString);
+            }
         }
     }
 }

@@ -87,11 +87,18 @@ class StringCalculatorTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $return);
     }
 
-    public function testWithNegativeNumbers()
+    public function testWithNegativeNumbers(): void
     {
-        $this->markTestSkipped();
-        $numbers = "-1,2";
-        $expected = "Negative not allowed : -1";
+        $numbers = '-1,2';
+        $expected = 'Negative not allowed : -1';
+        $return = $this->stringCalculator->add($numbers);
+        $this->assertEquals($expected, $return);
+    }
+
+    public function testCustomDelimiterWithNegativeNumbers(): void
+    {
+        $numbers = '//;\n5;-2';
+        $expected = 'Negative not allowed : -2';
         $return = $this->stringCalculator->add($numbers);
         $this->assertEquals($expected, $return);
     }
